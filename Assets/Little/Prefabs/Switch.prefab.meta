@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: afed8244ae12b214097d2412eeb7085c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Prefabs/Switch.prefab
+  uploadId: 640696

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7dc6864d90c61674e984d6eea12d0427
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Animations/GameTransition/fade_level_out.anim
+  uploadId: 640696

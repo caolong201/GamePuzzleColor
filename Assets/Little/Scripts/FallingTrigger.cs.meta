@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: be0252ca746ac5c49b554732c2233f68
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Scripts/FallingTrigger.cs
+  uploadId: 640696

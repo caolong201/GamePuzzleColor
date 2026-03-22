@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f8d40ff35a2d0f8449ab8a96173b32dd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Prefabs/GoalPiece.prefab
+  uploadId: 640696

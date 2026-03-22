@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 42f8fc1a70e20ff4e808325aef9ce9fd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Prefabs/Ground.prefab
+  uploadId: 640696

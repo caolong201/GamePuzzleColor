@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8efac22fdb73e0b43b23ae900d1fe943
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Animations/Wall.controller
+  uploadId: 640696

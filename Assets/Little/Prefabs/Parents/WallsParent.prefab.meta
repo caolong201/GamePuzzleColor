@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6f8ad3a4b4c1b1e4bb8e92740a7b4dea
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Prefabs/Parents/WallsParent.prefab
+  uploadId: 640696

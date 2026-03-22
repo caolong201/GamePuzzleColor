@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e6a6253e6fde535449e7bcfe87246965
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Animations/move_wall_down.anim
+  uploadId: 640696

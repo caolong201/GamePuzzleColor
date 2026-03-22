@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ac8f867930e6f184faf97e44635747e8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Prefabs/FallingGround.prefab
+  uploadId: 640696

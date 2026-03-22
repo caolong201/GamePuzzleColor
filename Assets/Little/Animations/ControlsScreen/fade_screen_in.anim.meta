@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c6842630d8a5f914cbfe75e551685734
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Animations/ControlsScreen/fade_screen_in.anim
+  uploadId: 640696

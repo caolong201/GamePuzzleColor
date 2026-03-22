@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a484519283a5a674e8c0c3dc92bb1cd2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Materials/GroundMat.mat
+  uploadId: 640696

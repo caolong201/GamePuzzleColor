@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3f9e082ee388be14d94ddff29b7023aa
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Animations/MainMenu/panel_fade_in.anim
+  uploadId: 640696

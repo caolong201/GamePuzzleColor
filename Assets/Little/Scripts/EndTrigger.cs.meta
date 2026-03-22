@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: d662f4656e98cbc4a81dbd114d5783fc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Scripts/EndTrigger.cs
+  uploadId: 640696

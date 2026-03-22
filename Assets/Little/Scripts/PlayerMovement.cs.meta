@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 7848eac7ed9a1494e84001be996df4c5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Scripts/PlayerMovement.cs
+  uploadId: 640696

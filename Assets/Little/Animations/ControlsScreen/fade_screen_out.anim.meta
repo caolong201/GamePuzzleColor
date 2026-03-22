@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e7f15b2607eb29540b7713563f8bbaf7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 275798
+  packageName: A Little Puzzle
+  packageVersion: 1.0
+  assetPath: Assets/Little/Animations/ControlsScreen/fade_screen_out.anim
+  uploadId: 640696
