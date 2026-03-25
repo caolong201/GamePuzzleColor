@@ -847,9 +847,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubesRoot: {fileID: 1350971155}
-  targetCamera: {fileID: 0}
-  activeMaterial: {fileID: 2100000, guid: c4fe1a6ceb056a74ab62c90ceec32d14, type: 2}
-  inactiveMaterial: {fileID: 2100000, guid: 8070bfc9caa1b9b4a8963a3c8fb96061, type: 2}
+  targetCamera: {fileID: 330585545}
+  activeMaterial: {fileID: 2100000, guid: 8070bfc9caa1b9b4a8963a3c8fb96061, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: c4fe1a6ceb056a74ab62c90ceec32d14, type: 2}
   cubeLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
