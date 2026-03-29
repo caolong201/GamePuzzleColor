@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6331999942140837648}
   - component: {fileID: 1620990952329590480}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: ObstacleCube
   m_TagString: BasicGround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a484519283a5a674e8c0c3dc92bb1cd2, type: 2}
+  - {fileID: 2100000, guid: c4fe1a6ceb056a74ab62c90ceec32d14, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
