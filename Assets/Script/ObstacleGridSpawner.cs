@@ -22,7 +22,8 @@ public class ObstacleGridSpawner : MonoBehaviour
 
     [Header("Spawn & di chuyển")]
     [SerializeField] private float spawnDistance = 14f;
-    [SerializeField] private float spawnInterval = 2.2f;
+    [Tooltip("Càng lớn thì các obstacle spawn cách nhau xa hơn dọc hướng tiến (≈ spawnInterval × moveSpeed).")]
+    [SerializeField] private float spawnInterval = 3.4f;
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private int maxAliveObstacles = 4;
     [Tooltip("Chọn pattern ngẫu nhiên trong list; tắt thì lần lượt từ đầu list.")]
