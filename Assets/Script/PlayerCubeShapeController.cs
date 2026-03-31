@@ -16,6 +16,7 @@ public class PlayerCubeShapeController : MonoBehaviour
 
     [Header("Click Settings")]
     [SerializeField] private LayerMask cubeLayerMask = ~0;
+    [SerializeField] private bool allowInteraction = true;
 
     private readonly Dictionary<Renderer, bool> _cubeStates = new Dictionary<Renderer, bool>();
     private Renderer[] _resolvedOrder;
@@ -37,6 +38,9 @@ public class PlayerCubeShapeController : MonoBehaviour
 
     private void Update()
     {
+        if (!allowInteraction)
+            return;
+
         if (!Input.GetMouseButtonDown(0))
             return;
 
@@ -55,6 +59,20 @@ public class PlayerCubeShapeController : MonoBehaviour
             return;
 
         ToggleCube(renderer);
+    }
+
+    public void SetInteractionEnabled(bool enabled)
+    {
+        allowInteraction = enabled;
+    }
+
+    public void DestroyAllPlayerCubes()
+    {
+        if (cubesRoot == null)
+            return;
+
+        for (int i = cubesRoot.childCount - 1; i >= 0; i--)
+            Destroy(cubesRoot.GetChild(i).gameObject);
     }
 
     private void InitializeAllCubesAsActive()
