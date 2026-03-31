@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -531,7 +531,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 0.9
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -867,7 +867,7 @@ MonoBehaviour:
   orderedGridCells:
   - {fileID: 0}
   activeMaterial: {fileID: 2100000, guid: 8070bfc9caa1b9b4a8963a3c8fb96061, type: 2}
-  inactiveMaterial: {fileID: 2100000, guid: c4fe1a6ceb056a74ab62c90ceec32d14, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: aaea0b75c7922414ba5e137ecde46a95, type: 2}
   cubeLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -906,7 +906,7 @@ MonoBehaviour:
   obstacleParent: {fileID: 1355171933}
   matchCoordinator: {fileID: 1195037611}
   activeMaterial: {fileID: 2100000, guid: 8070bfc9caa1b9b4a8963a3c8fb96061, type: 2}
-  inactiveMaterial: {fileID: 2100000, guid: c4fe1a6ceb056a74ab62c90ceec32d14, type: 2}
+  inactiveMaterial: {fileID: 2100000, guid: aaea0b75c7922414ba5e137ecde46a95, type: 2}
   shapePatterns:
   - {fileID: 11400000, guid: e91befd494c3adc41bb8f1cb23e9764a, type: 2}
   - {fileID: 11400000, guid: d6456427a7249b24ea98a713d7e68159, type: 2}
