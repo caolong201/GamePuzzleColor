@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 /// <summary>
 /// So khớp pattern player với obstacle khi obstacle tới vạch kiểm tra; thua thì bật UI.
@@ -14,9 +15,12 @@ public class ShapeMatchCoordinator : MonoBehaviour
     [SerializeField] private float loseUiDelayAfterExplosion = 0.6f;
 
     public bool IsGameOver { get; private set; }
+    public int CurrentScore { get; private set; }
+    public event Action<int> OnScoreChanged;
 
     private void Awake()
     {
+        CurrentScore = 0;
         if (loseUiRoot != null)
             loseUiRoot.SetActive(false);
         if (playerBombEffect != null)
@@ -30,6 +34,8 @@ public class ShapeMatchCoordinator : MonoBehaviour
 
         if (player.PatternMatchesObstacle(obstacle))
         {
+            CurrentScore++;
+            OnScoreChanged?.Invoke(CurrentScore);
             Destroy(obstacle.gameObject);
             return;
         }
@@ -61,6 +67,8 @@ public class ShapeMatchCoordinator : MonoBehaviour
     public void ResetMatchState()
     {
         IsGameOver = false;
+        CurrentScore = 0;
+        OnScoreChanged?.Invoke(CurrentScore);
         Time.timeScale = 1f;
         if (player != null)
             player.SetInteractionEnabled(true);
