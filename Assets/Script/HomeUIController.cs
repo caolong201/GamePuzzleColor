@@ -14,6 +14,7 @@ public class HomeUIController : MonoBehaviour
 
     [Header("Home UI")]
     [SerializeField] private GameObject homeRoot;
+    [SerializeField] private GameObject gameUiRoot;
 
     [Header("Setting Popup")]
     [SerializeField] private GameObject settingPopupRoot;
@@ -32,6 +33,9 @@ public class HomeUIController : MonoBehaviour
 
         if (homeRoot != null)
             homeRoot.SetActive(true);
+
+        if (gameUiRoot != null)
+            gameUiRoot.SetActive(false);
 
         if (settingPopupRoot != null)
             settingPopupRoot.SetActive(false);
@@ -58,6 +62,9 @@ public class HomeUIController : MonoBehaviour
 
         if (homeRoot != null)
             homeRoot.SetActive(false);
+
+        if (gameUiRoot != null)
+            gameUiRoot.SetActive(true);
     }
 
     public void RestartScene(bool startGameImmediately)

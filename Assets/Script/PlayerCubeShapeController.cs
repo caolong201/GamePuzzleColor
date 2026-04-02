@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerCubeShapeController : MonoBehaviour
 {
@@ -44,6 +45,9 @@ public class PlayerCubeShapeController : MonoBehaviour
         if (!Input.GetMouseButtonDown(0))
             return;
 
+        if (IsPointerOverUi())
+            return;
+
         if (targetCamera == null)
             return;
 
@@ -59,6 +63,29 @@ public class PlayerCubeShapeController : MonoBehaviour
             return;
 
         ToggleCube(renderer);
+    }
+
+    private static bool IsPointerOverUi()
+    {
+        if (EventSystem.current == null)
+            return false;
+
+        // Mouse / standalone
+        if (EventSystem.current.IsPointerOverGameObject())
+            return true;
+
+        // Touch devices
+        if (Input.touchCount > 0)
+        {
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                Touch t = Input.GetTouch(i);
+                if (EventSystem.current.IsPointerOverGameObject(t.fingerId))
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     public void SetInteractionEnabled(bool enabled)

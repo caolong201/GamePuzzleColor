@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Quan ly UIGame:
@@ -11,6 +12,7 @@ public class UIGameController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private ShapeMatchCoordinator matchCoordinator;
+    [SerializeField] private HomeUIController homeUIController;
     [SerializeField] private GameObject stopPopupRoot;
 
     [Header("Score UI")]
@@ -46,14 +48,48 @@ public class UIGameController : MonoBehaviour
             stopPopupRoot.SetActive(true);
     }
 
-    // Goi cho button Resume trong UIStop (neu co)
-    public void OnClickResume()
+    // Goi cho button Playgame/Tiep tuc trong UIStop
+    public void OnClickPlaygame()
     {
         if (stopPopupRoot != null)
             stopPopupRoot.SetActive(false);
 
         if (matchCoordinator == null || !matchCoordinator.IsGameOver)
             Time.timeScale = 1f;
+    }
+
+    // Goi cho button Replay/Choi lai trong UIStop
+    public void OnClickReplay()
+    {
+        if (stopPopupRoot != null)
+            stopPopupRoot.SetActive(false);
+
+        if (homeUIController != null)
+        {
+            homeUIController.RestartScene(true);
+            return;
+        }
+
+        HomeUIController.StartGameImmediatelyOnNextLoad = true;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    // Goi cho button Home/Ve Home trong UIStop
+    public void OnClickHome()
+    {
+        if (stopPopupRoot != null)
+            stopPopupRoot.SetActive(false);
+
+        if (homeUIController != null)
+        {
+            homeUIController.RestartScene(false);
+            return;
+        }
+
+        HomeUIController.StartGameImmediatelyOnNextLoad = false;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void HandleScoreChanged(int score)
