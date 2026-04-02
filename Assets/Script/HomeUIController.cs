@@ -15,6 +15,7 @@ public class HomeUIController : MonoBehaviour
     [Header("Home UI")]
     [SerializeField] private GameObject homeRoot;
     [SerializeField] private GameObject gameUiRoot;
+    [SerializeField] private SkyManager skyManager;
 
     [Header("Setting Popup")]
     [SerializeField] private GameObject settingPopupRoot;
@@ -59,6 +60,9 @@ public class HomeUIController : MonoBehaviour
 
         hasStartedGame = true;
         Time.timeScale = 1f;
+
+        if (skyManager != null)
+            skyManager.ApplyRandomSky();
 
         if (homeRoot != null)
             homeRoot.SetActive(false);

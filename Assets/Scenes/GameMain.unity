@@ -471,7 +471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &155502899
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1849,6 +1849,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563123186}
   m_CullTransparentMesh: 1
+--- !u!1 &623215043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 623215044}
+  - component: {fileID: 623215045}
+  m_Layer: 0
+  m_Name: SkyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &623215044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623215043}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 950, y: 710, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &623215045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623215043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3130d35f3b52184aa0c30c592a2c9c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skyMaterials:
+  - {fileID: 2100000, guid: 0db3b7a62d035e048a33dde3e44cf1e4, type: 2}
+  - {fileID: 2100000, guid: 76a1af063b1de7d47aa5f9637edb4ddc, type: 2}
+  - {fileID: 2100000, guid: 247c7cc9c7223bf42a1b1bf60660715b, type: 2}
+  - {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
+  - {fileID: 2100000, guid: 6728c4c8939b7414bb371598808f3099, type: 2}
+  avoidRepeatLast: 1
 --- !u!1 &631641136
 GameObject:
   m_ObjectHideFlags: 0
@@ -3084,6 +3135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   homeRoot: {fileID: 1273153744}
   gameUiRoot: {fileID: 1304312162}
+  skyManager: {fileID: 623215045}
   settingPopupRoot: {fileID: 919671224}
   settingPopupPanel: {fileID: 919671225}
   popupDuration: 0.25
@@ -3180,7 +3232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1273153745
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3419,6 +3471,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b026abce952619c488dbaf61c4183534, type: 2}
   - {fileID: 11400000, guid: 8f365052124ce3146abf08f274d2e00f, type: 2}
   - {fileID: 11400000, guid: 830c58d1a291a1a46971a9f6cbf6aff6, type: 2}
+  - {fileID: 11400000, guid: 3b93dc495cc92494e9c4156be1f74c30, type: 2}
+  - {fileID: 11400000, guid: 15ba4b47cec7f594e83e707ccaa0abdc, type: 2}
+  - {fileID: 11400000, guid: 03282c2419f314e4aadb81e3a1c365ca, type: 2}
   spawnDistance: 30
   spawnInterval: 4.04
   moveSpeed: 6
@@ -4304,3 +4359,4 @@ SceneRoots:
   - {fileID: 1350971155}
   - {fileID: 1355171933}
   - {fileID: 1065352173}
+  - {fileID: 623215044}
