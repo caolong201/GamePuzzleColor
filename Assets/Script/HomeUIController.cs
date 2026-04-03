@@ -58,6 +58,9 @@ public class HomeUIController : MonoBehaviour
         if (hasStartedGame)
             return;
 
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayUiClick();
+
         hasStartedGame = true;
         Time.timeScale = 1f;
 
@@ -85,6 +88,9 @@ public class HomeUIController : MonoBehaviour
         if (settingPopupRoot == null)
             return;
 
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayUiClick();
+
         StopPopupRoutine();
         settingPopupRoot.SetActive(true);
 
@@ -99,6 +105,9 @@ public class HomeUIController : MonoBehaviour
     {
         if (settingPopupRoot == null)
             return;
+
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayUiClick();
 
         StopPopupRoutine();
 

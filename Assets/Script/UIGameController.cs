@@ -43,6 +43,9 @@ public class UIGameController : MonoBehaviour
     // Goi cho button Stop trong UIGame
     public void OnClickStop()
     {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayUiClick();
+
         Time.timeScale = 0f;
         if (stopPopupRoot != null)
             stopPopupRoot.SetActive(true);
@@ -51,6 +54,9 @@ public class UIGameController : MonoBehaviour
     // Goi cho button Playgame/Tiep tuc trong UIStop
     public void OnClickPlaygame()
     {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayUiClick();
+
         if (stopPopupRoot != null)
             stopPopupRoot.SetActive(false);
 
@@ -61,6 +67,9 @@ public class UIGameController : MonoBehaviour
     // Goi cho button Replay/Choi lai trong UIStop
     public void OnClickReplay()
     {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayUiClick();
+
         if (stopPopupRoot != null)
             stopPopupRoot.SetActive(false);
 
@@ -78,6 +87,9 @@ public class UIGameController : MonoBehaviour
     // Goi cho button Home/Ve Home trong UIStop
     public void OnClickHome()
     {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayUiClick();
+
         if (stopPopupRoot != null)
             stopPopupRoot.SetActive(false);
 

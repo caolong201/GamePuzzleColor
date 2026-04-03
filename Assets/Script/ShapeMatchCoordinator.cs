@@ -47,6 +47,9 @@ public class ShapeMatchCoordinator : MonoBehaviour
 
     private IEnumerator PlayLoseSequence(ObstaclePatternGrid obstacle)
     {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayBomb();
+
         if (playerBombEffect != null)
             playerBombEffect.SetActive(true);
 

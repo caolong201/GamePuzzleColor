@@ -22,6 +22,8 @@ public class UILoseController : MonoBehaviour
     private void OnEnable()
     {
         RefreshScore();
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayLose();
     }
 
     public void RefreshScore()
@@ -36,6 +38,9 @@ public class UILoseController : MonoBehaviour
 
     public void OnClickReplay()
     {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayUiClick();
+
         if (homeUIController != null)
         {
             homeUIController.RestartScene(true);
@@ -49,6 +54,9 @@ public class UILoseController : MonoBehaviour
 
     public void OnClickHome()
     {
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayUiClick();
+
         if (homeUIController != null)
         {
             homeUIController.RestartScene(false);
