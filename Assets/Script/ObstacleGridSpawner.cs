@@ -12,6 +12,8 @@ public class ObstacleGridSpawner : MonoBehaviour
     [SerializeField] private GameObject cellPrefab;
     [SerializeField] private Transform obstacleParent;
     [SerializeField] private ShapeMatchCoordinator matchCoordinator;
+    [Tooltip("Gán Home UI (Tap to Play). Trước khi tap: obstacle spawn nhưng toàn ô activeMaterial để không lộ hình. Để trống = luôn hiện pattern như cũ.")]
+    [SerializeField] private HomeUIController homeUi;
 
     [Header("Materials (giống player)")]
     [SerializeField] private Material activeMaterial;
@@ -39,6 +41,7 @@ public class ObstacleGridSpawner : MonoBehaviour
 
     private float _nextSpawnTime;
     private int _patternSequentialIndex;
+    private bool _obstacleVisualsRevealed;
 
     private void Start()
     {
@@ -51,6 +54,12 @@ public class ObstacleGridSpawner : MonoBehaviour
     {
         if (matchCoordinator != null && matchCoordinator.IsGameOver)
             return;
+
+        if (homeUi != null && homeUi.HasGameStarted && !_obstacleVisualsRevealed)
+        {
+            RevealAllObstacleVisuals();
+            _obstacleVisualsRevealed = true;
+        }
 
         if (shapePatterns == null || shapePatterns.Count == 0 || cellPrefab == null)
             return;
@@ -120,7 +129,10 @@ public class ObstacleGridSpawner : MonoBehaviour
         root.transform.SetParent(parent, worldPositionStays: true);
 
         var patternGrid = root.AddComponent<ObstaclePatternGrid>();
-        patternGrid.BuildFromShape(shape, cellPrefab, activeMaterial, inactiveMaterial, reference, cellSpacingX, cellSpacingY);
+        if (homeUi != null && !homeUi.HasGameStarted)
+            patternGrid.BuildFromShapeHidden(shape, cellPrefab, activeMaterial, inactiveMaterial, reference, cellSpacingX, cellSpacingY);
+        else
+            patternGrid.BuildFromShape(shape, cellPrefab, activeMaterial, inactiveMaterial, reference, cellSpacingX, cellSpacingY);
 
         var mover = root.AddComponent<MovingObstacleTowardPlayer>();
         mover.Setup(reference, moveSpeed, matchCoordinator);
@@ -134,6 +146,17 @@ public class ObstacleGridSpawner : MonoBehaviour
         {
             if (grids[i] != null)
                 Destroy(grids[i].gameObject);
+        }
+    }
+
+    private void RevealAllObstacleVisuals()
+    {
+        Transform root = obstacleParent != null ? obstacleParent : transform;
+        var grids = root.GetComponentsInChildren<ObstaclePatternGrid>(false);
+        for (int i = 0; i < grids.Length; i++)
+        {
+            if (grids[i] != null)
+                grids[i].RevealPatternVisuals(activeMaterial, inactiveMaterial);
         }
     }
 }

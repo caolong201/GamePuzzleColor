@@ -2,12 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>
-/// Quan ly UI Home:
-/// - Vao scene thi game dung (Time.timeScale = 0)
-/// - Bam Tap To Play de bat dau game
-/// - Bam Setting de mo popup UISetting voi hieu ung scale
-/// </summary>
+
 public class HomeUIController : MonoBehaviour
 {
     public static bool StartGameImmediatelyOnNextLoad { get; set; }
@@ -25,6 +20,9 @@ public class HomeUIController : MonoBehaviour
 
     private Coroutine popupRoutine;
     private bool hasStartedGame;
+
+    /// <summary>Đã Tap to Play — obstacle có thể hiện đúng pattern.</summary>
+    public bool HasGameStarted => hasStartedGame;
 
     private void Awake()
     {

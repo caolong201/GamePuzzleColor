@@ -33,7 +33,28 @@ public class ObstaclePatternGrid : MonoBehaviour
         for (int i = 0; i < 9; i++)
             _pattern[i] = src[i];
 
-        BuildCells(cellPrefab, activeMaterial, inactiveMaterial, reference, cellSpacingX, cellSpacingY);
+        BuildCells(cellPrefab, activeMaterial, inactiveMaterial, reference, cellSpacingX, cellSpacingY, hideShapeVisual: false);
+    }
+
+    /// <summary>Spawn trước Tap to Play: mọi ô dùng activeMaterial, pattern vẫn lưu để so khớp.</summary>
+    public void BuildFromShapeHidden(
+        GridShape3x3 shape,
+        GameObject cellPrefab,
+        Material activeMaterial,
+        Material inactiveMaterial,
+        Transform reference,
+        float cellSpacingX,
+        float cellSpacingY)
+    {
+        if (shape == null || cellPrefab == null || reference == null)
+            return;
+
+        shape.EnsureSize();
+        bool[] src = shape.Cells;
+        for (int i = 0; i < 9; i++)
+            _pattern[i] = src[i];
+
+        BuildCells(cellPrefab, activeMaterial, inactiveMaterial, reference, cellSpacingX, cellSpacingY, hideShapeVisual: true);
     }
 
     public void BuildFromBools(
@@ -51,7 +72,22 @@ public class ObstaclePatternGrid : MonoBehaviour
         for (int i = 0; i < 9; i++)
             _pattern[i] = pattern9[i];
 
-        BuildCells(cellPrefab, activeMaterial, inactiveMaterial, reference, cellSpacingX, cellSpacingY);
+        BuildCells(cellPrefab, activeMaterial, inactiveMaterial, reference, cellSpacingX, cellSpacingY, hideShapeVisual: false);
+    }
+
+    /// <summary>Sau Tap to Play: gán lại material theo pattern đã lưu.</summary>
+    public void RevealPatternVisuals(Material activeMaterial, Material inactiveMaterial)
+    {
+        if (_cells == null || activeMaterial == null || inactiveMaterial == null)
+            return;
+
+        for (int i = 0; i < 9; i++)
+        {
+            Renderer r = _cells[i];
+            if (r == null)
+                continue;
+            r.sharedMaterial = _pattern[i] ? activeMaterial : inactiveMaterial;
+        }
     }
 
     private void BuildCells(
@@ -60,7 +96,8 @@ public class ObstaclePatternGrid : MonoBehaviour
         Material inactiveMaterial,
         Transform reference,
         float cellSpacingX,
-        float cellSpacingY)
+        float cellSpacingY,
+        bool hideShapeVisual)
     {
         ClearChildren();
 
@@ -86,7 +123,7 @@ public class ObstaclePatternGrid : MonoBehaviour
 
                 bool on = _pattern[k];
                 if (activeMaterial != null && inactiveMaterial != null)
-                    r.sharedMaterial = on ? activeMaterial : inactiveMaterial;
+                    r.sharedMaterial = hideShapeVisual ? activeMaterial : (on ? activeMaterial : inactiveMaterial);
 
                 _cells[k] = r;
                 k++;

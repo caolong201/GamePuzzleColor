@@ -3577,6 +3577,7 @@ MonoBehaviour:
     type: 3}
   obstacleParent: {fileID: 1355171933}
   matchCoordinator: {fileID: 1195037611}
+  homeUi: {fileID: 1195037612}
   activeMaterial: {fileID: 2100000, guid: 8070bfc9caa1b9b4a8963a3c8fb96061, type: 2}
   inactiveMaterial: {fileID: 2100000, guid: aaea0b75c7922414ba5e137ecde46a95, type: 2}
   shapePatterns:
