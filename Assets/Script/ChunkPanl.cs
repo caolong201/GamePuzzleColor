@@ -7,7 +7,9 @@ public class ChunkPanl : MonoBehaviour
     [SerializeField] int startingChunksAmount = 12;
     [SerializeField] float chunkLength = 10f;
     [SerializeField] Transform chunkParent;
-    [SerializeField] float scrollSpeed = 8f;
+    [Tooltip("Tốc độ nền; khi gán ShapeMatchCoordinator sẽ cộng thêm theo điểm (mỗi 10 điểm +3 mặc định).")]
+    [SerializeField] float scrollSpeed = 5f;
+    [SerializeField] ShapeMatchCoordinator matchCoordinator;
     [Tooltip("Player hoặc camera. Để trống sẽ dùng Camera.main, không có thì dùng vị trí object này.")]
     [SerializeField] Transform referencePoint;
    
@@ -25,7 +27,10 @@ public class ChunkPanl : MonoBehaviour
         if (_chunks.Count == 0)
             return;
 
-        float dz = -scrollSpeed * Time.deltaTime;
+        float effectiveScroll = matchCoordinator != null
+            ? matchCoordinator.GetScaledSpeed(scrollSpeed)
+            : scrollSpeed;
+        float dz = -effectiveScroll * Time.deltaTime;
         for (int i = 0; i < _chunks.Count; i++)
         {
             Transform t = _chunks[i];

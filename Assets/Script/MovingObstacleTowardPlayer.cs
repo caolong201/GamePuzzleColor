@@ -7,7 +7,7 @@ using UnityEngine;
 public class MovingObstacleTowardPlayer : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private float moveSpeed = 6f;
+    [SerializeField] private float moveSpeed = 5f;
     [Tooltip("Khi (vị trí - player)·forward <= ngưỡng này thì chấm điểm một lần.")]
     [SerializeField] private float evaluateAlongThreshold = 0.35f;
 
@@ -22,6 +22,11 @@ public class MovingObstacleTowardPlayer : MonoBehaviour
         _coordinator = coordinator;
         _grid = GetComponent<ObstaclePatternGrid>();
         _evaluated = false;
+    }
+
+    public void SetMoveSpeed(float speed)
+    {
+        moveSpeed = speed;
     }
 
     private void Update()

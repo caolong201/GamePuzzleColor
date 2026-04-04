@@ -14,6 +14,11 @@ public class ShapeMatchCoordinator : MonoBehaviour
     [SerializeField] private GameObject playerBombEffect; // object Boom con của Player
     [SerializeField] private float loseUiDelayAfterExplosion = 0.6f;
 
+    [Header("Tốc độ theo điểm (đường + obstacle)")]
+    [Tooltip("Mỗi N điểm (10, 20, 30…) cộng thêm speedBonusPerTier vào base scroll/move.")]
+    [SerializeField] private int scorePerSpeedTier = 10;
+    [SerializeField] private float speedBonusPerTier = 3f;
+
     public bool IsGameOver { get; private set; }
     public int CurrentScore { get; private set; }
     public event Action<int> OnScoreChanged;
@@ -65,6 +70,15 @@ public class ShapeMatchCoordinator : MonoBehaviour
             loseUiRoot.SetActive(true);
         if (pauseTimeOnLose)
             Time.timeScale = 0f;
+    }
+
+    /// <summary>Base scrollSpeed / moveSpeed + bonus mỗi tier điểm (mặc định +3 mỗi 10 điểm).</summary>
+    public float GetScaledSpeed(float baseSpeed)
+    {
+        if (baseSpeed < 0f)
+            return baseSpeed;
+        int tiers = Mathf.Max(0, CurrentScore / Mathf.Max(1, scorePerSpeedTier));
+        return baseSpeed + tiers * speedBonusPerTier;
     }
 
     public void ResetMatchState()

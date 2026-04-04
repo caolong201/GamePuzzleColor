@@ -155,8 +155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -340}
-  m_SizeDelta: {x: 1920, y: 400}
+  m_AnchoredPosition: {x: 0, y: -365}
+  m_SizeDelta: {x: 1920, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &81611028
 MonoBehaviour:
@@ -1898,7 +1898,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 76a1af063b1de7d47aa5f9637edb4ddc, type: 2}
   - {fileID: 2100000, guid: 247c7cc9c7223bf42a1b1bf60660715b, type: 2}
   - {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
-  - {fileID: 2100000, guid: 6728c4c8939b7414bb371598808f3099, type: 2}
+  - {fileID: 2100000, guid: 76a1af063b1de7d47aa5f9637edb4ddc, type: 2}
   avoidRepeatLast: 1
 --- !u!1 &631641136
 GameObject:
@@ -3239,6 +3239,8 @@ MonoBehaviour:
   pauseTimeOnLose: 1
   playerBombEffect: {fileID: 1364596196}
   loseUiDelayAfterExplosion: 0.6
+  scorePerSpeedTier: 10
+  speedBonusPerTier: 3
 --- !u!114 &1195037612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3595,7 +3597,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03282c2419f314e4aadb81e3a1c365ca, type: 2}
   spawnDistance: 30
   spawnInterval: 4.04
-  moveSpeed: 6
+  moveSpeed: 5
   maxAliveObstacles: 4
   randomizePattern: 1
   cellSpacingX: 1
@@ -3745,7 +3747,8 @@ MonoBehaviour:
   startingChunksAmount: 12
   chunkLength: 10
   chunkParent: {fileID: 97087600}
-  scrollSpeed: 8
+  scrollSpeed: 5
+  matchCoordinator: {fileID: 1195037611}
   referencePoint: {fileID: 330585546}
   recycleMargin: 2
 --- !u!1 &1433897864

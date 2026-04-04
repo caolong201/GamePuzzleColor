@@ -26,7 +26,8 @@ public class ObstacleGridSpawner : MonoBehaviour
     [SerializeField] private float spawnDistance = 14f;
     [Tooltip("Càng lớn thì các obstacle spawn cách nhau xa hơn dọc hướng tiến (≈ spawnInterval × moveSpeed).")]
     [SerializeField] private float spawnInterval = 3.4f;
-    [SerializeField] private float moveSpeed = 6f;
+    [Tooltip("Tốc độ nền obstacle; cộng thêm theo điểm qua ShapeMatchCoordinator (mỗi 10 điểm +3 mặc định).")]
+    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private int maxAliveObstacles = 4;
     [Tooltip("Chọn pattern ngẫu nhiên trong list; tắt thì lần lượt từ đầu list.")]
     [SerializeField] private bool randomizePattern = true;
@@ -43,11 +44,46 @@ public class ObstacleGridSpawner : MonoBehaviour
     private int _patternSequentialIndex;
     private bool _obstacleVisualsRevealed;
 
+    private void OnEnable()
+    {
+        if (matchCoordinator != null)
+            matchCoordinator.OnScoreChanged += OnScoreChangedRefreshObstacleSpeed;
+    }
+
+    private void OnDisable()
+    {
+        if (matchCoordinator != null)
+            matchCoordinator.OnScoreChanged -= OnScoreChangedRefreshObstacleSpeed;
+    }
+
     private void Start()
     {
         _nextSpawnTime = Time.time;
         if (spawnOnStart && shapePatterns != null && shapePatterns.Count > 0)
             TrySpawnInitial();
+        ApplyScaledSpeedToAllObstacles();
+    }
+
+    private void OnScoreChangedRefreshObstacleSpeed(int _)
+    {
+        ApplyScaledSpeedToAllObstacles();
+    }
+
+    private float CurrentScaledMoveSpeed()
+    {
+        return matchCoordinator != null ? matchCoordinator.GetScaledSpeed(moveSpeed) : moveSpeed;
+    }
+
+    private void ApplyScaledSpeedToAllObstacles()
+    {
+        float v = CurrentScaledMoveSpeed();
+        Transform root = obstacleParent != null ? obstacleParent : transform;
+        var movers = root.GetComponentsInChildren<MovingObstacleTowardPlayer>(false);
+        for (int i = 0; i < movers.Length; i++)
+        {
+            if (movers[i] != null)
+                movers[i].SetMoveSpeed(v);
+        }
     }
 
     private void Update()
@@ -135,7 +171,7 @@ public class ObstacleGridSpawner : MonoBehaviour
             patternGrid.BuildFromShape(shape, cellPrefab, activeMaterial, inactiveMaterial, reference, cellSpacingX, cellSpacingY);
 
         var mover = root.AddComponent<MovingObstacleTowardPlayer>();
-        mover.Setup(reference, moveSpeed, matchCoordinator);
+        mover.Setup(reference, CurrentScaledMoveSpeed(), matchCoordinator);
     }
 
     public void ClearAllObstacles()
