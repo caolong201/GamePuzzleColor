@@ -3701,6 +3701,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3b93dc495cc92494e9c4156be1f74c30, type: 2}
   - {fileID: 11400000, guid: 15ba4b47cec7f594e83e707ccaa0abdc, type: 2}
   - {fileID: 11400000, guid: 03282c2419f314e4aadb81e3a1c365ca, type: 2}
+  - {fileID: 11400000, guid: 39c4cd6681595dd49adf76d73c8edb92, type: 2}
+  - {fileID: 11400000, guid: 7101d5d99d6bd734d9ec50989b6f9fb1, type: 2}
+  - {fileID: 11400000, guid: 3b2f8b1a255c3e6468deff97ec1f0fcc, type: 2}
+  - {fileID: 11400000, guid: 69b3ea3332fca5c4385b1ddfabfa3278, type: 2}
+  - {fileID: 11400000, guid: 407df95d64a29e94195acc74e761c19a, type: 2}
+  - {fileID: 11400000, guid: 89e360bfd9ffad747a9bbf905779c586, type: 2}
+  - {fileID: 11400000, guid: fff22615e699dfc49a238aa2e3d0af66, type: 2}
+  - {fileID: 11400000, guid: 0bb6a2323c6552e4f8514bb78458b04e, type: 2}
+  - {fileID: 11400000, guid: 5a3584762d4767e4c832f8a2bac5e34b, type: 2}
+  - {fileID: 11400000, guid: a370c00bb1d78794e88548b90ba7f78c, type: 2}
+  - {fileID: 11400000, guid: b0317dac8e6eebc4b879c08061d22aa5, type: 2}
+  - {fileID: 11400000, guid: 539232fa5ce9f314092f5d7171b8e054, type: 2}
   spawnDistance: 30
   spawnInterval: 4.04
   moveSpeed: 5
