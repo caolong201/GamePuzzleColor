@@ -15,6 +15,12 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip loseSfx;
     [SerializeField] private AudioClip bombSfx;
 
+    private bool sfxEnabled = true;
+    private bool bgmEnabled = true;
+
+    public bool SfxEnabled => sfxEnabled;
+    public bool BgmEnabled => bgmEnabled;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -48,9 +54,29 @@ public class SoundManager : MonoBehaviour
         bgmSource.loop = true;
     }
 
+    public void SetSfxEnabled(bool enabled)
+    {
+        sfxEnabled = enabled;
+    }
+
+    public void SetBgmEnabled(bool enabled)
+    {
+        bgmEnabled = enabled;
+        if (bgmSource == null)
+            return;
+
+        if (!bgmEnabled)
+        {
+            bgmSource.Stop();
+            return;
+        }
+
+        StartBackgroundMusic();
+    }
+
     public void StartBackgroundMusic()
     {
-        if (bgmSource == null || backgroundMusic == null)
+        if (!bgmEnabled || bgmSource == null || backgroundMusic == null)
             return;
 
         if (bgmSource.clip == backgroundMusic && bgmSource.isPlaying)
@@ -80,7 +106,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySfx(AudioClip clip)
     {
-        if (sfxSource == null || clip == null)
+        if (!sfxEnabled || sfxSource == null || clip == null)
             return;
 
         sfxSource.PlayOneShot(clip);
