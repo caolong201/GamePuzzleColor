@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class MaterialRandomizerScript : MonoBehaviour
@@ -22,20 +21,22 @@ public class MaterialRandomizerScript : MonoBehaviour
 		}
     }
 
+#if UNITY_EDITOR
     public void findMaterials()
     {
-        string[] guids = AssetDatabase.FindAssets("t:Material", new[] { "Assets/PBS Materials Variety Pack/" });
+        string[] guids = UnityEditor.AssetDatabase.FindAssets("t:Material", new[] { "Assets/PBS Materials Variety Pack/" });
         materials.Clear();
         foreach (string id in guids)
         {
-            //Debug.Log(AssetDatabase.GUIDToAssetPath(id));
-            Material mat = AssetDatabase.LoadMainAssetAtPath(AssetDatabase.GUIDToAssetPath(id)) as Material;
-            if (!AssetDatabase.GUIDToAssetPath(id).Contains("coming_soon"))
+            string path = UnityEditor.AssetDatabase.GUIDToAssetPath(id);
+            Material mat = UnityEditor.AssetDatabase.LoadMainAssetAtPath(path) as Material;
+            if (!path.Contains("coming_soon"))
             {
                 materials.Add(mat);
             }
         }
     }
+#endif
 
     public void findMaterialSpheres()
     {
