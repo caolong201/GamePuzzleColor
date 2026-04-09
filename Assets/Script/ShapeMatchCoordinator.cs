@@ -47,6 +47,7 @@ public class ShapeMatchCoordinator : MonoBehaviour
 
         IsGameOver = true;
         player.SetInteractionEnabled(false);
+        ShowLoseAd();
         StartCoroutine(PlayLoseSequence(obstacle));
     }
 
@@ -91,5 +92,13 @@ public class ShapeMatchCoordinator : MonoBehaviour
             player.SetInteractionEnabled(true);
         if (loseUiRoot != null)
             loseUiRoot.SetActive(false);
+    }
+
+    private static void ShowLoseAd()
+    {
+#if UNITY_WEBGL || UNITY_EDITOR
+        if (GameMonetize.Instance != null)
+            GameMonetize.Instance.ShowAd();
+#endif
     }
 }

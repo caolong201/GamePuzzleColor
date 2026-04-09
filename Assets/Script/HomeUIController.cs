@@ -59,6 +59,8 @@ public class HomeUIController : MonoBehaviour
         if (SoundManager.Instance != null)
             SoundManager.Instance.PlayUiClick();
 
+        ShowStartAd();
+
         hasStartedGame = true;
         Time.timeScale = 1f;
 
@@ -70,6 +72,14 @@ public class HomeUIController : MonoBehaviour
 
         if (gameUiRoot != null)
             gameUiRoot.SetActive(true);
+    }
+
+    private static void ShowStartAd()
+    {
+#if UNITY_WEBGL || UNITY_EDITOR
+        if (GameMonetize.Instance != null)
+            GameMonetize.Instance.ShowAd();
+#endif
     }
 
     public void RestartScene(bool startGameImmediately)
