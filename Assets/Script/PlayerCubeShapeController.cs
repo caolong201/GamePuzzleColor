@@ -93,6 +93,16 @@ public class PlayerCubeShapeController : MonoBehaviour
         allowInteraction = enabled;
     }
 
+    public void SetMaterials(Material newActiveMaterial, Material newInactiveMaterial)
+    {
+        if (newActiveMaterial == null || newInactiveMaterial == null)
+            return;
+
+        activeMaterial = newActiveMaterial;
+        inactiveMaterial = newInactiveMaterial;
+        RefreshAllCubeMaterials();
+    }
+
     public void DestroyAllPlayerCubes()
     {
         if (cubesRoot == null)
@@ -139,6 +149,23 @@ public class PlayerCubeShapeController : MonoBehaviour
     private bool IsInCubesRoot(Transform target)
     {
         return target == cubesRoot || target.IsChildOf(cubesRoot);
+    }
+
+    private void RefreshAllCubeMaterials()
+    {
+        if (cubesRoot == null)
+            return;
+
+        Renderer[] renderers = cubesRoot.GetComponentsInChildren<Renderer>(true);
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            Renderer r = renderers[i];
+            if (r == null)
+                continue;
+
+            bool isActive = _cubeStates.TryGetValue(r, out bool st) && st;
+            r.material = isActive ? activeMaterial : inactiveMaterial;
+        }
     }
 
     private void ResolveOrderedCells()

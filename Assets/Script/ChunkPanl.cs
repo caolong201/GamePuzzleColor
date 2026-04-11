@@ -8,7 +8,7 @@ public class ChunkPanl : MonoBehaviour
     [SerializeField] float chunkLength = 10f;
     [SerializeField] Transform chunkParent;
     [Tooltip("Tốc độ nền; khi gán ShapeMatchCoordinator sẽ cộng thêm theo điểm (mỗi 10 điểm +3 mặc định).")]
-    [SerializeField] float scrollSpeed = 5f;
+    [SerializeField] float scrollSpeed = 7f;
     [SerializeField] ShapeMatchCoordinator matchCoordinator;
     [Tooltip("Player hoặc camera. Để trống sẽ dùng Camera.main, không có thì dùng vị trí object này.")]
     [SerializeField] Transform referencePoint;

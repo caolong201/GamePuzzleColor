@@ -7,7 +7,16 @@ using System;
 /// </summary>
 public class ShapeMatchCoordinator : MonoBehaviour
 {
+    [Serializable]
+    private class MaterialSetById
+    {
+        [Min(0)] public int setId;
+        public Material activeMaterial;
+        public Material inactiveMaterial;
+    }
+
     [SerializeField] private PlayerCubeShapeController player;
+    [SerializeField] private ObstacleGridSpawner obstacleSpawner;
     [SerializeField] private GameObject loseUiRoot;
     [SerializeField] private bool pauseTimeOnLose = true;
     [Header("Lose Explosion Sequence")]
@@ -18,14 +27,22 @@ public class ShapeMatchCoordinator : MonoBehaviour
     [Tooltip("Mỗi N điểm (10, 20, 30…) cộng thêm speedBonusPerTier vào base scroll/move.")]
     [SerializeField] private int scorePerSpeedTier = 10;
     [SerializeField] private float speedBonusPerTier = 3f;
+    [Header("Material Sets (Player + Obstacle theo cùng ID)")]
+    [SerializeField] private MaterialSetById[] materialSets;
+    [SerializeField] private int startMaterialSetIndex;
 
     public bool IsGameOver { get; private set; }
     public int CurrentScore { get; private set; }
     public event Action<int> OnScoreChanged;
 
+    private int _currentMaterialSetIndex;
+
     private void Awake()
     {
         CurrentScore = 0;
+        _currentMaterialSetIndex = Mathf.Clamp(startMaterialSetIndex, 0, Mathf.Max(0, materialSets != null ? materialSets.Length - 1 : 0));
+        ApplyCurrentMaterialSet();
+
         if (loseUiRoot != null)
             loseUiRoot.SetActive(false);
         if (playerBombEffect != null)
@@ -39,12 +56,18 @@ public class ShapeMatchCoordinator : MonoBehaviour
 
         if (player.PatternMatchesObstacle(obstacle))
         {
+            int previousTier = CurrentSpeedTier();
             CurrentScore++;
+            int currentTier = CurrentSpeedTier();
+            if (currentTier > previousTier)
+                AdvanceMaterialSet();
+
             OnScoreChanged?.Invoke(CurrentScore);
             Destroy(obstacle.gameObject);
             return;
         }
 
+        AdvanceMaterialSet();
         IsGameOver = true;
         player.SetInteractionEnabled(false);
         ShowLoseAd();
@@ -78,7 +101,7 @@ public class ShapeMatchCoordinator : MonoBehaviour
     {
         if (baseSpeed < 0f)
             return baseSpeed;
-        int tiers = Mathf.Max(0, CurrentScore / Mathf.Max(1, scorePerSpeedTier));
+        int tiers = CurrentSpeedTier();
         return baseSpeed + tiers * speedBonusPerTier;
     }
 
@@ -92,6 +115,40 @@ public class ShapeMatchCoordinator : MonoBehaviour
             player.SetInteractionEnabled(true);
         if (loseUiRoot != null)
             loseUiRoot.SetActive(false);
+
+        _currentMaterialSetIndex = Mathf.Clamp(startMaterialSetIndex, 0, Mathf.Max(0, materialSets != null ? materialSets.Length - 1 : 0));
+        ApplyCurrentMaterialSet();
+    }
+
+    private int CurrentSpeedTier()
+    {
+        return Mathf.Max(0, CurrentScore / Mathf.Max(1, scorePerSpeedTier));
+    }
+
+    private void AdvanceMaterialSet()
+    {
+        if (materialSets == null || materialSets.Length == 0)
+            return;
+
+        _currentMaterialSetIndex = (_currentMaterialSetIndex + 1) % materialSets.Length;
+        ApplyCurrentMaterialSet();
+    }
+
+    private void ApplyCurrentMaterialSet()
+    {
+        if (materialSets == null || materialSets.Length == 0)
+            return;
+
+        _currentMaterialSetIndex = Mathf.Clamp(_currentMaterialSetIndex, 0, materialSets.Length - 1);
+        MaterialSetById set = materialSets[_currentMaterialSetIndex];
+        if (set == null || set.activeMaterial == null || set.inactiveMaterial == null)
+            return;
+
+        if (player != null)
+            player.SetMaterials(set.activeMaterial, set.inactiveMaterial);
+
+        if (obstacleSpawner != null)
+            obstacleSpawner.SetMaterials(set.activeMaterial, set.inactiveMaterial);
     }
 
     private static void ShowLoseAd()

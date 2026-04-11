@@ -27,7 +27,7 @@ public class ObstacleGridSpawner : MonoBehaviour
     [Tooltip("Càng lớn thì các obstacle spawn cách nhau xa hơn dọc hướng tiến (≈ spawnInterval × moveSpeed).")]
     [SerializeField] private float spawnInterval = 3.4f;
     [Tooltip("Tốc độ nền obstacle; cộng thêm theo điểm qua ShapeMatchCoordinator (mỗi 10 điểm +3 mặc định).")]
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private int maxAliveObstacles = 4;
     [Tooltip("Chọn pattern ngẫu nhiên trong list; tắt thì lần lượt từ đầu list.")]
     [SerializeField] private bool randomizePattern = true;
@@ -192,6 +192,33 @@ public class ObstacleGridSpawner : MonoBehaviour
         for (int i = 0; i < grids.Length; i++)
         {
             if (grids[i] != null)
+                grids[i].RevealPatternVisuals(activeMaterial, inactiveMaterial);
+        }
+    }
+
+    public void SetMaterials(Material newActiveMaterial, Material newInactiveMaterial)
+    {
+        if (newActiveMaterial == null || newInactiveMaterial == null)
+            return;
+
+        activeMaterial = newActiveMaterial;
+        inactiveMaterial = newInactiveMaterial;
+        RefreshAllAliveObstacleMaterials();
+    }
+
+    private void RefreshAllAliveObstacleMaterials()
+    {
+        Transform root = obstacleParent != null ? obstacleParent : transform;
+        var grids = root.GetComponentsInChildren<ObstaclePatternGrid>(false);
+        bool hidePattern = homeUi != null && !homeUi.HasGameStarted;
+        for (int i = 0; i < grids.Length; i++)
+        {
+            if (grids[i] == null)
+                continue;
+
+            if (hidePattern)
+                grids[i].RevealPatternVisuals(activeMaterial, activeMaterial);
+            else
                 grids[i].RevealPatternVisuals(activeMaterial, inactiveMaterial);
         }
     }

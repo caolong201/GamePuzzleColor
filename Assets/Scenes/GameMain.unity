@@ -3399,12 +3399,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1350971157}
+  obstacleSpawner: {fileID: 1355171932}
   loseUiRoot: {fileID: 155502898}
   pauseTimeOnLose: 1
   playerBombEffect: {fileID: 1364596196}
   loseUiDelayAfterExplosion: 0.6
   scorePerSpeedTier: 10
   speedBonusPerTier: 3
+  materialSets:
+  - setId: 0
+    activeMaterial: {fileID: 2100000, guid: 8070bfc9caa1b9b4a8963a3c8fb96061, type: 2}
+    inactiveMaterial: {fileID: 2100000, guid: aaea0b75c7922414ba5e137ecde46a95, type: 2}
+  - setId: 0
+    activeMaterial: {fileID: 2100000, guid: d4490bf569cb34a4dbe50e9b4e7978ca, type: 2}
+    inactiveMaterial: {fileID: 2100000, guid: aaea0b75c7922414ba5e137ecde46a95, type: 2}
+  - setId: 0
+    activeMaterial: {fileID: 2100000, guid: b3736810137d65f4e8819d11c81c45a4, type: 2}
+    inactiveMaterial: {fileID: 2100000, guid: aaea0b75c7922414ba5e137ecde46a95, type: 2}
+  startMaterialSetIndex: 0
 --- !u!114 &1195037612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3771,9 +3783,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a370c00bb1d78794e88548b90ba7f78c, type: 2}
   - {fileID: 11400000, guid: b0317dac8e6eebc4b879c08061d22aa5, type: 2}
   - {fileID: 11400000, guid: 539232fa5ce9f314092f5d7171b8e054, type: 2}
-  spawnDistance: 30
-  spawnInterval: 4.04
-  moveSpeed: 5
+  spawnDistance: 40
+  spawnInterval: 4
+  moveSpeed: 7
   maxAliveObstacles: 4
   randomizePattern: 1
   cellSpacingX: 1
@@ -3923,7 +3935,7 @@ MonoBehaviour:
   startingChunksAmount: 12
   chunkLength: 10
   chunkParent: {fileID: 97087600}
-  scrollSpeed: 5
+  scrollSpeed: 7
   matchCoordinator: {fileID: 1195037611}
   referencePoint: {fileID: 330585546}
   recycleMargin: 2
