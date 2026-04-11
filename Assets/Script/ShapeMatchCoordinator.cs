@@ -5,8 +5,21 @@ using System;
 /// <summary>
 /// So khớp pattern player với obstacle khi obstacle tới vạch kiểm tra; thua thì bật UI.
 /// </summary>
+[DefaultExecutionOrder(50)]
 public class ShapeMatchCoordinator : MonoBehaviour
 {
+    /// <summary>
+    /// int.MinValue = chưa có lần chơi nào trong session / vừa về Home; dùng startMaterialSetIndex trên coordinator.
+    /// Giá trị khác = bộ material hiện tại, giữ khi Replay (load lại scene).
+    /// </summary>
+    private static int s_persistedMaterialSetIndex = int.MinValue;
+
+    /// <summary>Gọi trước khi load lại scene từ HomeUIController: về Home xóa tiến trình skin; Replay giữ skin.</summary>
+    public static void PrepareSceneRestart(bool startGameImmediately)
+    {
+        if (!startGameImmediately)
+            s_persistedMaterialSetIndex = int.MinValue;
+    }
     [Serializable]
     private class MaterialSetById
     {
@@ -40,13 +53,23 @@ public class ShapeMatchCoordinator : MonoBehaviour
     private void Awake()
     {
         CurrentScore = 0;
-        _currentMaterialSetIndex = Mathf.Clamp(startMaterialSetIndex, 0, Mathf.Max(0, materialSets != null ? materialSets.Length - 1 : 0));
-        ApplyCurrentMaterialSet();
+        int maxSet = Mathf.Max(0, materialSets != null ? materialSets.Length - 1 : 0);
+        if (materialSets == null || materialSets.Length == 0)
+            _currentMaterialSetIndex = 0;
+        else if (s_persistedMaterialSetIndex == int.MinValue)
+            _currentMaterialSetIndex = Mathf.Clamp(startMaterialSetIndex, 0, maxSet);
+        else
+            _currentMaterialSetIndex = Mathf.Clamp(s_persistedMaterialSetIndex, 0, maxSet);
 
         if (loseUiRoot != null)
             loseUiRoot.SetActive(false);
         if (playerBombEffect != null)
             playerBombEffect.SetActive(false);
+    }
+
+    private void Start()
+    {
+        ApplyCurrentMaterialSet();
     }
 
     public void TryResolve(ObstaclePatternGrid obstacle)
@@ -67,7 +90,6 @@ public class ShapeMatchCoordinator : MonoBehaviour
             return;
         }
 
-        AdvanceMaterialSet();
         IsGameOver = true;
         player.SetInteractionEnabled(false);
         ShowLoseAd();
@@ -116,7 +138,6 @@ public class ShapeMatchCoordinator : MonoBehaviour
         if (loseUiRoot != null)
             loseUiRoot.SetActive(false);
 
-        _currentMaterialSetIndex = Mathf.Clamp(startMaterialSetIndex, 0, Mathf.Max(0, materialSets != null ? materialSets.Length - 1 : 0));
         ApplyCurrentMaterialSet();
     }
 
@@ -131,7 +152,21 @@ public class ShapeMatchCoordinator : MonoBehaviour
             return;
 
         _currentMaterialSetIndex = (_currentMaterialSetIndex + 1) % materialSets.Length;
+        s_persistedMaterialSetIndex = _currentMaterialSetIndex;
         ApplyCurrentMaterialSet();
+    }
+
+    /// <summary>
+    /// Gọi từ UI Lose trước Replay: đổi bộ material cho ván mới (chỉ cập nhật index lưu; scene reload sẽ áp dụng).
+    /// Không gọi khi va chạm sai — tránh obstacle còn trên đường đổi màu lộn xộn lúc nổ / chờ UI.
+    /// </summary>
+    public void AdvanceMaterialForLoseReplayAndPersist()
+    {
+        if (materialSets == null || materialSets.Length == 0)
+            return;
+
+        _currentMaterialSetIndex = (_currentMaterialSetIndex + 1) % materialSets.Length;
+        s_persistedMaterialSetIndex = _currentMaterialSetIndex;
     }
 
     private void ApplyCurrentMaterialSet()

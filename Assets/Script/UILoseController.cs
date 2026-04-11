@@ -41,12 +41,16 @@ public class UILoseController : MonoBehaviour
         if (SoundManager.Instance != null)
             SoundManager.Instance.PlayUiClick();
 
+        if (matchCoordinator != null)
+            matchCoordinator.AdvanceMaterialForLoseReplayAndPersist();
+
         if (homeUIController != null)
         {
             homeUIController.RestartScene(true);
             return;
         }
 
+        ShapeMatchCoordinator.PrepareSceneRestart(true);
         HomeUIController.StartGameImmediatelyOnNextLoad = true;
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -84,6 +84,7 @@ public class HomeUIController : MonoBehaviour
 
     public void RestartScene(bool startGameImmediately)
     {
+        ShapeMatchCoordinator.PrepareSceneRestart(startGameImmediately);
         StartGameImmediatelyOnNextLoad = startGameImmediately;
         Time.timeScale = 1f;
         Scene activeScene = SceneManager.GetActiveScene();

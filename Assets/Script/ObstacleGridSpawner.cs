@@ -5,6 +5,7 @@ using UnityEngine;
 /// Spawn obstacle 3×3 liên tục: mỗi obstacle một pattern (ScriptableObject), có material active/inactive,
 /// di chuyển về phía player; so khớp do ShapeMatchCoordinator + PlayerCubeShapeController.
 /// </summary>
+[DefaultExecutionOrder(100)]
 public class ObstacleGridSpawner : MonoBehaviour
 {
     [Header("References")]
